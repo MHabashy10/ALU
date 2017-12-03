@@ -1,0 +1,25 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="side-menu21"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left" id="side-menu21" style="background-color:#BEDEE4;">
+    <ion-header-bar class="bar-stable">
+      <div class="title">Menu</div>
+    </ion-header-bar>
+    <ion-content padding="false" class="side-menu-left has-header ">
+      <ion-list id="menu-list1">
+        <ion-item class="positive" id="menu-list-item5" ui-sref="home()" menu-close="">Home</ion-item>
+        <ion-item class="positive" id="menu-list-item2" ui-sref="menu.myStudents()" menu-close="">Check students</ion-item>
+        <ion-item class="positive" id="menu-list-item3" ui-sref="menu.addNewStudent()" menu-close="">Add new student</ion-item>
+        <ion-item class="positive" id="menu-list-item4" ui-sref="menu.addSubject()" menu-close="">Add subject</ion-item>
+      </ion-list>
+      <button id="menu-button10" style="border-radius:156px 156px 156px 156px;" class="button button-positive button-block">Notifications </button>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
