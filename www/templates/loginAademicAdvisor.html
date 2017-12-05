@@ -1,18 +1,18 @@
 <ion-view title="Login Aademic Advisor" id="page23" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
-    <form id="loginAademicAdvisor-form16" class="list">
+    <form id="loginAademicAdvisor-form16" name="loginAdv" class="list">
       <ion-list id="loginAademicAdvisor-list8">
         <label class="item item-input" id="loginAademicAdvisor-input53">
           <span class="input-label">Academic ID</span>
-          <input type="text" placeholder="">
+          <input type="text" placeholder="" required ng-model="AdInfo.advId">
         </label>
         <label class="item item-input" id="loginAademicAdvisor-input54">
           <span class="input-label">Password </span>
-          <input type="password" placeholder="">
+          <input type="password" placeholder="" required ng-model="AdInfo.advPassword">
         </label>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
-      <a ui-sref="menu.welcome()" id="loginAademicAdvisor-button42" style="border-radius:19px 19px 19px 19px;" class="button button-calm button-block">Log in</a>
+      <a ng-click="login()"ng-disabled="loginAdv.$invalid" id="loginAademicAdvisor-button42" style="border-radius:19px 19px 19px 19px;" class="button button-calm button-block">Log in</a>
       <a ui-sref="signup()" id="loginAademicAdvisor-button43" class="button button-positive button-block button-clear">Or create an account</a>
     </form>
   </ion-content>
