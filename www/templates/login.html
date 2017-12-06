@@ -1,17 +1,17 @@
 <ion-view title="Login" id="page11" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
-    <form id="login-form9" class="list">
+    <form name="loginStu" class="list">
       <ion-list id="login-list5">
         <label class="item item-input" id="login-input12">
           <span class="input-label">Student ID</span>
-          <input type="text" placeholder="">
+          <input type="text" placeholder="" ng-model="student.Stu_id" required>
         </label>
         <label class="item item-input" id="login-input28">
           <span class="input-label">Password</span>
-          <input type="password" placeholder="">
+          <input type="password" placeholder="" ng-model="student.password" required>
         </label>
       </ion-list>
     </form>
-    <a ui-sref="welcomeStudent()" id="login-button11" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Log in</a>
+    <a ng-click="login(student)" ng-disabled="loginStu.$invalid" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Log in</a>
   </ion-content>
 </ion-view>
