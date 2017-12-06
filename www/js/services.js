@@ -10,12 +10,12 @@ angular.module('app.services', [])
       signUpAdv: function (AdvData) {
         var req = {
           method: 'POST',
-          url: baseUrl + 'advSignUp',
+          url: baseUrl + 'advisor/advSignUp',
 
           headers: {
             'Content-Type': "application/json"
           },
-          data: { "AdvData": JSON.stringify(AdvData) }
+          data: { "AdvData": AdvData }
         }
 
         return sendReq(req);
@@ -26,34 +26,36 @@ angular.module('app.services', [])
 
         var req = {
           method: 'POST',
-          url: baseUrl + 'advLogin',
+          url: baseUrl + 'advisor/advLogin',
           headers: {
             'Content-Type': "application/json"
           },
-          data: { "AdvData": JSON.stringify(AdvData) }
+          data: { "AdvData": AdvData }
         }
 
         return sendReq(req);
       },
-      getPlanTiers: function () {
+      getMyStudents: function (advId) {
         var req = {
           method: 'POST',
-          url: '/ordering/api/getPlanTiers',
+          url: baseUrl + 'advisor/myStudents',
           headers: {
             'Content-Type': "application/json"
-          }
+          },
+          data: { "AdvId": advId }
 
         }
 
         return sendReq(req);
       },
-      getPlans: function () {
+      editStu: function (StuData) {
         var req = {
           method: 'POST',
-          url: '/ordering/api/getPlans',
+          url: baseUrl + '/student/stuEdit',
           headers: {
             'Content-Type': "application/json"
-          }
+          },
+          data: { "StuData": StuData }
 
         }
 
@@ -62,7 +64,7 @@ angular.module('app.services', [])
       reCaptcha: function () {
         var req = {
           method: 'POST',
-          url: '/ordering/api/fetchReCaptcha',
+          url: baseUrl + '/ordering/api/fetchReCaptcha',
           headers: {
             'Content-Type': "application/json"
           }
