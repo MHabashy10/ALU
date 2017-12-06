@@ -1,3 +1,22 @@
 <ion-view title="Plan for academic advisor " id="page9" style="background-color:#BEDEE4;">
-  <ion-content padding="true" class="has-header"></ion-content>
+  <ion-content padding="true" class="has-header">
+
+    <ion-list ng-repeat="(key, value) in subjects | groupBy: 'Level'" ng-init="sh[key]=false">
+
+      <ion-item class="item-divider item-icon-right" ng-click="sh[key]= !sh[key]">
+        <h2>Level: {{ key }}</h2>
+        <span class="icon icon-accessory" ng-class="{'ion-chevron-down': sh[key], 'ion-chevron-right': !sh[key]}"></span>
+      </ion-item>
+      <ion-item ng-show="sh[key]" ng-repeat="subject in value| orderBy:'Sub_id'">
+        <p>ID: {{subject.Sub_id}}</p>
+        <h4> Name: {{subject.Sub_name}}</h4>
+        <p> Department: {{subject.Department.Dep_name}}</p>
+        <p> Level: {{subject.Level}}</p>
+        <p ng-if="subject.Subject.Sub_name">Prerequisits: {{subject.Subject.Sub_name}}</p>
+        <p> Hour: {{subject.Hour}} </p>
+
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
 </ion-view>
