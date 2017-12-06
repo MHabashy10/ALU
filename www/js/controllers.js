@@ -101,12 +101,13 @@ angular.module('app.controllers', [])
 
     }])
 
-  .controller('studentCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+  .controller('studentCtrl', ['$scope', '$stateParams', '$ionicNavBarDelegate',
+    function ($scope, $stateParams, $ionicNavBarDelegate) {
 
       $scope.student = $stateParams.student;
+      $scope.$on('$ionicView.enter', function(e) {
+        $ionicNavBarDelegate.showBar(true);
+    });
     }])
 
   .controller('loginCtrl', ['$scope', '$stateParams', '$state', 'apiService', '$rootScope', '$ionicLoading',
@@ -163,6 +164,7 @@ angular.module('app.controllers', [])
     function ($scope, $stateParams, apiService, $state, $ionicLoading) {
 
       $scope.student = $stateParams.student;
+      $scope.student.oldStuId = $stateParams.student.Stu_id;
 
       $scope.save = function (student) {
         //menu.student()
