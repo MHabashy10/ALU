@@ -1,23 +1,31 @@
 <ion-view title="Edit Student" id="page17" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
-    <form id="editStudent-form10" class="list">
+    <form id="editStudent-form10" name="editStudent" class="list">
       <label class="item item-input" id="editStudent-input31">
         <span class="input-label">Student ID</span>
-        <input type="text" placeholder="">
+        <input type="number" placeholder="" ng-model="student.Stu_id" required>
       </label>
       <label class="item item-input" id="editStudent-input29">
         <span class="input-label">Student name</span>
-        <input type="text" placeholder="">
+        <input type="text" placeholder="" ng-model="student.Stu_name" required>
       </label>
       <label class="item item-input" id="editStudent-input32">
         <span class="input-label">Level</span>
-        <input type="number" placeholder="">
+        <input type="number" placeholder="" ng-model="student.Level" required>
       </label>
-      <label class="item item-input" id="editStudent-input34">
-        <span class="input-label">Department</span>
-        <input type="text" placeholder="">
-      </label>
+      <div class="item item-input form-group" id="editStudent-input34"  >
+        <label class="input-label">Department</label>
+        <input type="number" placeholder="" ng-model="student.Department.Dep_id" required>
+        <!-- <select class="form-control" ng-model="student.Department.Dep_id" required>
+          <option value="1101" ng-selected="student.Department.Dep_id== 1101">PHYS</option>
+          <option value="1102" ng-selected="student.Department.Dep_id==1102">CHM</option>
+          <option value="1103" ng-selected="student.Department.Dep_id== 1103">BIO</option>
+          <option value="1104" ng-selected="student.Department.Dep_id== 1104">MATH</option>
+          <option value="1105" ng-selected="student.Department.Dep_id== 1105">CS</option>
+          <option value="1602" ng-selected="student.Department.Dep_id== 1602">ARABIC</option>
+        </select> -->
+      </div>
     </form>
-    <a ui-sref="menu.student()" id="editStudent-button12" style="border-radius:19px 19px 19px 19px;" class="button button-calm button-block">Save</a>
+    <a ng-click="save(student)" ng-disabled="editStudent.$invalid" style="border-radius:19px 19px 19px 19px;" class="button button-calm button-block">Save</a>
   </ion-content>
 </ion-view>
