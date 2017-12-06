@@ -61,13 +61,27 @@ angular.module('app.services', [])
 
         return sendReq(req);
       },
-      reCaptcha: function () {
+      addStudent: function (StuData) {
         var req = {
           method: 'POST',
-          url: baseUrl + '/ordering/api/fetchReCaptcha',
+          url: baseUrl + '/student/stuAdd',
           headers: {
             'Content-Type': "application/json"
-          }
+          },
+          data: { "StuData": StuData }
+
+        }
+
+        return sendReq(req);
+      },
+      loginStu: function (StuData) {
+        var req = {
+          method: 'POST',
+          url: baseUrl + '/student/stuLogin',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "StuData": StuData }
 
         }
 
