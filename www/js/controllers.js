@@ -72,7 +72,7 @@ angular.module('app.controllers', [])
       $scope.add = function (student) {
         $ionicLoading.show();
 
-        apiService.addStudent(student)
+        apiService.addStu(student)
 
           .then(function name(response) {
 
@@ -93,11 +93,28 @@ angular.module('app.controllers', [])
       }
     }])
 
-  .controller('addSubjectCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+  .controller('addSubjectCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+    function ($scope, $stateParams, apiService, $state, $ionicLoading) {
+      $scope.subject = {};
 
+      $scope.add = function (subject) {
+        $ionicLoading.show();
+        apiService.addSub(subject)
+          .then(function name(response) {
+            $ionicLoading.hide();
+            if (response.data.error) {
+              alert(response.data.error);
+            } else {
+
+              $state.go('menu.planForAcademicAdvisor');
+            }
+          }).catch(function name(error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
+      }
 
     }])
 
@@ -105,9 +122,9 @@ angular.module('app.controllers', [])
     function ($scope, $stateParams, $ionicNavBarDelegate) {
 
       $scope.student = $stateParams.student;
-      $scope.$on('$ionicView.enter', function(e) {
+      $scope.$on('$ionicView.enter', function (e) {
         $ionicNavBarDelegate.showBar(true);
-    });
+      });
     }])
 
   .controller('loginCtrl', ['$scope', '$stateParams', '$state', 'apiService', '$rootScope', '$ionicLoading',
@@ -152,11 +169,25 @@ angular.module('app.controllers', [])
 
     }])
 
-  .controller('PlanForStudentCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+  .controller('PlanForStudentCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', '$rootScope',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading, $rootScope) {
+      $scope.subjects = [];
 
+      $ionicLoading.show();
+
+      apiService.getMySubjects($rootScope.student.Stu_id)
+        .then(function (response) {
+
+          $ionicLoading.hide();
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            $scope.subjects = response.data.subjects;
+          }
+        }).catch(function (error) {
+          $ionicLoading.hide();
+          alert(error.data);
+        })
 
     }])
 
@@ -185,6 +216,7 @@ angular.module('app.controllers', [])
           })
       }
     }])
+
 
 
   .controller('addSubject2Ctrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -229,18 +261,35 @@ angular.module('app.controllers', [])
         .then(function (response) {
 
           $ionicLoading.hide();
-          $scope.myStudents = response.data.students;
-
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            $scope.myStudents = response.data.students;
+          }
         }).catch(function (error) {
           $ionicLoading.hide();
           alert(error.data);
         })
     }])
 
-  .controller('planForAcademicAdvisorCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+  .controller('planForAcademicAdvisorCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading) {
+      $scope.subjects = [];
 
+      $ionicLoading.show();
+
+      apiService.getAllSubjects()
+        .then(function (response) {
+
+          $ionicLoading.hide();
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            $scope.subjects = response.data.subjects;
+          }
+        }).catch(function (error) {
+          $ionicLoading.hide();
+          alert(error.data);
+        })
 
     }])
