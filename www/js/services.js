@@ -51,7 +51,7 @@ angular.module('app.services', [])
       editStu: function (StuData) {
         var req = {
           method: 'POST',
-          url: baseUrl + '/student/stuEdit',
+          url: baseUrl + 'student/stuEdit',
           headers: {
             'Content-Type': "application/json"
           },
@@ -61,10 +61,10 @@ angular.module('app.services', [])
 
         return sendReq(req);
       },
-      addStudent: function (StuData) {
+      addStu: function (StuData) {
         var req = {
           method: 'POST',
-          url: baseUrl + '/student/stuAdd',
+          url: baseUrl + 'student/stuAdd',
           headers: {
             'Content-Type': "application/json"
           },
@@ -77,11 +77,49 @@ angular.module('app.services', [])
       loginStu: function (StuData) {
         var req = {
           method: 'POST',
-          url: baseUrl + '/student/stuLogin',
+          url: baseUrl + 'student/stuLogin',
           headers: {
             'Content-Type': "application/json"
           },
           data: { "StuData": StuData }
+
+        }
+
+        return sendReq(req);
+      },
+      addSub: function (SubData) {
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'subject/subAdd',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "SubData": SubData }
+
+        }
+
+        return sendReq(req);
+      },
+      getAllSubjects: function () {
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'subject/allSubjects',
+          headers: {
+            'Content-Type': "application/json"
+          }
+
+        }
+
+        return sendReq(req);
+      },
+      getMySubjects: function (stuId) {
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'subject/mySubjects',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "StuId": stuId }
 
         }
 
