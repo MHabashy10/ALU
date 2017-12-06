@@ -16,12 +16,14 @@ angular.module('app.controllers', [])
 
     }])
 
-  .controller('loginAademicAdvisorCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$rootScope',
-    function ($scope, $stateParams, apiService, $state, $rootScope) {
+  .controller('loginAademicAdvisorCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$rootScope', '$ionicLoading',
+    function ($scope, $stateParams, apiService, $state, $rootScope, $ionicLoading) {
       $scope.AdInfo = {};
       $scope.login = function () {
+        $ionicLoading.show();
         apiService.loginAdv($scope.AdInfo)
           .then(function name(response) {
+            $ionicLoading.hide();
             if (response.data.error) {
               alert(response.data.error);
             } else {
@@ -29,6 +31,7 @@ angular.module('app.controllers', [])
               $state.go('menu.welcome');
             }
           }).catch(function name(error) {
+            $ionicLoading.hide();
             alert(error.data);
           })
       }
@@ -36,13 +39,15 @@ angular.module('app.controllers', [])
     }])
 
 
-  .controller('signupCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$rootScope',
-    function ($scope, $stateParams, apiService, $state, $rootScope) {
+  .controller('signupCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$rootScope', '$ionicLoading',
+    function ($scope, $stateParams, apiService, $state, $rootScope, $ionicLoading) {
       $scope.AdInfo = {};
 
       $scope.signUp = function () {
+        $ionicLoading.show();
         apiService.signUpAdv($scope.AdInfo)
           .then(function name(response) {
+            $ionicLoading.hide();
             if (response.data.error) {
               alert(response.data.error);
             } else {
@@ -50,6 +55,7 @@ angular.module('app.controllers', [])
               $state.go('menu.welcome');
             }
           }).catch(function name(error) {
+            $ionicLoading.hide();
             alert(error.data);
           })
       }
@@ -58,12 +64,33 @@ angular.module('app.controllers', [])
 
 
 
-  .controller('addNewStudentCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+  .controller('addNewStudentCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading) {
 
+      $scope.student = {};
 
+      $scope.add = function (student) {
+        $ionicLoading.show();
+
+        apiService.addStudent(student)
+
+          .then(function name(response) {
+
+            $ionicLoading.hide();
+
+            if (response.data.error) {
+
+              alert(response.data.error);
+
+            } else {
+
+              $state.go('menu.myStudents');
+            }
+          }).catch(function name(error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
+      }
     }])
 
   .controller('addSubjectCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -82,11 +109,29 @@ angular.module('app.controllers', [])
       $scope.student = $stateParams.student;
     }])
 
-  .controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+  .controller('loginCtrl', ['$scope', '$stateParams', '$state', 'apiService', '$rootScope', '$ionicLoading',
+    function ($scope, $stateParams, $state, apiService, $rootScope, $ionicLoading) {
+      $scope.student = {};
 
+      $scope.login = function (student) {
+        $ionicLoading.show();
+        apiService.loginStu(student)
+          .then(function (response) {
+
+            $ionicLoading.hide();
+            if (response.data.error) {
+              alert(response.data.error || "Unexpected error please try again!");
+
+            } else {
+              $rootScope.student = response.data.student;
+              $state.go('welcomeStudent');
+            }
+
+          }).catch(function (error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
+      }
 
     }])
 
@@ -122,19 +167,20 @@ angular.module('app.controllers', [])
       $scope.save = function (student) {
         //menu.student()
         $ionicLoading.show();
-        apiService.editStu(student).then(function (response) {
+        apiService.editStu(student)
+          .then(function (response) {
 
-          $ionicLoading.hide();
-          if (response.data[0]) {
-            $state.go('menu.student', { student: $scope.student }, {reload: true});
-          } else {
-            alert(response.data.error || "Unexpected error please try again!");
-          }
+            $ionicLoading.hide();
+            if (response.data[0]) {
+              $state.go('menu.student', { student: $scope.student }, { reload: true });
+            } else {
+              alert(response.data.error || "Unexpected error please try again!");
+            }
 
-        }).catch(function (error) {
-          $ionicLoading.hide();
-          alert(error.data);
-        })
+          }).catch(function (error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
       }
     }])
 
