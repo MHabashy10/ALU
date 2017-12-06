@@ -1,12 +1,12 @@
 <ion-view title="Student " id="page10" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
     <ion-list id="student-list10">
-      <ion-item id="student-list-item18">Name</ion-item>
-      <ion-item id="student-list-item24">Student ID</ion-item>
-      <ion-item id="student-list-item25">Level</ion-item>
-      <ion-item id="student-list-item26">Department</ion-item>
+      <ion-item id="student-list-item18">Name: {{student.Stu_name}}</ion-item>
+      <ion-item id="student-list-item24">Student ID: {{student.Stu_id}}</ion-item>
+      <ion-item id="student-list-item25">Level: {{student.Level}}</ion-item>
+      <ion-item id="student-list-item26">Department: {{student.Department.Dep_name}}</ion-item>
     </ion-list>
-    <a ui-sref="editStudent()" id="student-button21" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Edit Student info</a>
+    <a ui-sref="menu.student.editStudent({student:student})" id="student-button21" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Edit Student info</a>
     <a ui-sref="menu.modifySchedule()" id="student-button22" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Modify Schedule</a>
   </ion-content>
 </ion-view>
