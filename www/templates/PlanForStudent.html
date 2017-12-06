@@ -1,24 +1,23 @@
 <ion-view title=" Plan for Student " id="page15" style="background-color:#BEDEE4;">
-    <ion-content padding="true" class="has-header">
+  <ion-content padding="true" class="has-header">
 
-            <ion-list ng-repeat="(key, value) in subjects  | groupBy: '-Plan.Level'" ng-init="sh[key]=false">
 
-              <ion-item class="item-divider item-icon-right" ng-click="sh[key]= !sh[key]">
-                <h2>Level: {{ key| ltrim: '-' }}</h2>
-                <span class="icon icon-accessory" ng-class="{'ion-chevron-down': sh[key], 'ion-chevron-right': !sh[key]}"></span>
-              </ion-item>
-              <ion-item ng-show="sh[key]" ng-repeat="subject in value| orderBy:'Sub_id'">
+    <ion-list ng-repeat="(key, value) in subjects | groupBy: 'Level'" ng-init="sh[key]=false">
 
-                <p>ID: {{subject.Plan.Sub_id}}</p>
-                <h4> Name: {{subject.Plan.Sub_name}}</h4>
-                <p> Department: {{subject.Plan.Department.Dep_name}}</p>
-                <p> Level: {{subject.Plan.Level}}</p>
-                <p ng-if="subject.Plan.Subject.Sub_name">Prerequisits: {{subject.Plan.Subject.Sub_name}}</p>
-                <p> Hour: {{subject.Plan.Hour}} </p>
-                <h5 ng-class="{assertive: subject.Status == 'Failed', royal: subject.Status == 'Succeed', positive: subject.Status == 'Current'}"> Status: {{subject.Status}} </h5>
+      <ion-item class="item-divider item-icon-right" ng-click="sh[key]= !sh[key]">
+        <h2>Level: {{ key }}</h2>
+        <span class="icon icon-accessory" ng-class="{'ion-chevron-down': sh[key], 'ion-chevron-right': !sh[key]}"></span>
+      </ion-item>
+      <ion-item ng-show="sh[key]" ng-repeat="subject in value| orderBy:'Sub_id'">
+        <p>ID: {{subject.Sub_id}}</p>
+        <h4> Name: {{subject.Sub_name}}</h4>
+        <p> Department: {{subject.Department.Dep_name}}</p>
+        <p> Level: {{subject.Level}}</p>
+        <p ng-if="subject.Subject.Sub_name">Prerequisits: {{subject.Subject.Sub_name}}</p>
+        <p> Hour: {{subject.Hour}} </p>
 
-              </ion-item>
+      </ion-item>
 
-            </ion-list>
-          </ion-content>
+    </ion-list>
+  </ion-content>
 </ion-view>
