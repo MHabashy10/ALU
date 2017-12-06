@@ -26,6 +26,6 @@
         </select> -->
       </div>
     </form>
-    <a ng-click="save(student)" ng-disabled="editStudent.$invalid" style="border-radius:19px 19px 19px 19px;" class="button button-calm button-block">Save</a>
+    <a ng-click="save(student)" ng-disabled="editStudent.$invalid|| editStudent.$pristine" style="border-radius:19px 19px 19px 19px;" class="button button-calm button-block">Save</a>
   </ion-content>
 </ion-view>
