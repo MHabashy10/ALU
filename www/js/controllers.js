@@ -30,6 +30,27 @@ angular.module('app.controllers', [])
 
 
     }])
+  .controller('requestsCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading) {
+      $scope.requests = [];
+    
+      $ionicLoading.show();
+
+      apiService.getMyRequests(Aca_id)
+        .then(function (response) {
+
+          $ionicLoading.hide();
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            $scope.requests = response.data.requests;
+          }
+        }).catch(function (error) {
+          $ionicLoading.hide();
+          alert(error.data);
+        })
+
+    }])
 
   .controller('scheduleCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading',
     function ($scope, $stateParams, apiService, $state, $ionicLoading) {

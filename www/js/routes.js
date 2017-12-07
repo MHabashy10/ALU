@@ -158,6 +158,15 @@ angular.module('app.routes', [])
           }
         }
       })
+      .state('menu.requests', {
+        url: '/page27',
+        views: {
+          'side-menu21': {
+            templateUrl: 'templates/requests.html',
+            controller: 'requestsCtrl'
+          }
+        }
+      })
 
     $urlRouterProvider.otherwise('/page1')
 
