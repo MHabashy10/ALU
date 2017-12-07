@@ -75,7 +75,7 @@ angular.module('app.controllers', [])
             if (response.data.error) {
               alert(response.data.error);
             } else {
-              alert("Your Request has been sent to your advisor for reviewal!")
+              alert("Subject Modification has been submitted successfully!")
             }
           }).catch(function (error) {
             $ionicLoading.hide();
