@@ -30,11 +30,12 @@ angular.module('app.controllers', [])
 
 
     }])
-  .controller('requestsCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading',
-    function ($scope, $stateParams, apiService, $state, $ionicLoading) {
+  .controller('requestsCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', '$rootScope',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading, $rootScope) {
       $scope.requests = [];
-    
+
       $ionicLoading.show();
+      var Aca_id = $rootScope.advisor.Aca_id;
 
       apiService.getMyRequests(Aca_id)
         .then(function (response) {
@@ -49,6 +50,50 @@ angular.module('app.controllers', [])
           $ionicLoading.hide();
           alert(error.data);
         })
+
+      $scope.reqDecline = function name(Sub_id, Stu_id) {
+        $ionicLoading.show();
+        var ReqData = {
+          Sub_id: Sub_id,
+          Stu_id: Stu_id,
+        }
+        apiService.reqDecline(ReqData)
+          .then(function (response) {
+
+            $ionicLoading.hide();
+            if (response.data.error) {
+              alert(response.data.error);
+            } else {
+              //$scope.requests = response.data.requests;
+            }
+          }).catch(function (error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
+      }
+
+
+      $scope.reqApprove = function name(Sub_id, Stu_id, Reason) {
+        $ionicLoading.show();
+        var ReqData = {
+          Sub_id: Sub_id,
+          Stu_id: Stu_id,
+          Reason: Reason
+        }
+        apiService.reqApprove(ReqData)
+          .then(function (response) {
+
+            $ionicLoading.hide();
+            if (response.data.error) {
+              alert(response.data.error);
+            } else {
+             // $scope.requests = response.data.requests;
+            }
+          }).catch(function (error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
+      }
 
     }])
 
