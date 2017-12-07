@@ -31,10 +31,25 @@ angular.module('app.controllers', [])
 
     }])
 
-  .controller('scheduleCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+  .controller('scheduleCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading) {
+      $scope.subjects = [];
+      var Stu_id = $stateParams.student.Stu_id;
+      $ionicLoading.show();
+
+      apiService.getMySubjects(Stu_id)
+        .then(function (response) {
+
+          $ionicLoading.hide();
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            $scope.subjects = response.data.subjects;
+          }
+        }).catch(function (error) {
+          $ionicLoading.hide();
+          alert(error.data);
+        })
 
 
     }])
@@ -81,6 +96,10 @@ angular.module('app.controllers', [])
             $ionicLoading.hide();
             alert(error.data);
           })
+      }
+
+      $scope.checkSchedule = function () {
+        $state.go("menu.schedule", { student: $stateParams.student });
       }
 
     }])
