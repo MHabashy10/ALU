@@ -124,6 +124,60 @@ angular.module('app.services', [])
         }
 
         return sendReq(req);
+      },
+      reqStuEdit: function (ReqData) {
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'request/reqStuEdit',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "ReqData": ReqData }
+
+        }
+
+        return sendReq(req);
+      },
+      reqApprove: function (ReqData) {
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'request/reqApprove',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "ReqData": ReqData }
+
+        }
+
+        return sendReq(req);
+      },
+      reqDecline: function (ReqData) {
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'request/reqDecline',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "ReqData": ReqData }
+
+        }
+
+        return sendReq(req);
+      },
+      subStuEdit: function name(SubStuData) {
+
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'subject/subStuEdit',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "SubStuData": SubStuData }
+
+        }
+
+        return sendReq(req);
+
       }
 
 
