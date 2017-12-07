@@ -1,31 +1,27 @@
 <ion-view title="Schedule" id="page27" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
-    <h2 id="schedule-heading8" style="color:#000000;">Level {{}}</h2>
-    <ion-list id="schedule-list15">
-      <ion-item id="schedule-list-item45">
-        <span class="item-note">subject name and Hours</span>
-      </ion-item>
-      <ion-item id="schedule-list-item9">
-        <span class="item-note">subject name and Hours</span>
-      </ion-item>
-      <ion-item id="schedule-list-item17">
-        <span class="item-note">subject name and Hours</span>
-      </ion-item>
-      <ion-item id="schedule-list-item19">
-        <span class="item-note">subject name and Hours</span>
-      </ion-item>
-      <ion-item id="schedule-list-item20">
-        <span class="item-note">subject name and Hours</span>
-      </ion-item>
-      <ion-item id="schedule-list-item21">
-        <span class="item-note">subject name and Hours</span>
-      </ion-item>
-      <ion-item id="schedule-list-item22">
-        <span class="item-note">subject name and Hours</span>
-      </ion-item>
-      <label class="item item-input" id="schedule-textarea16">
-        <span class="input-label">Total Hours :</span><textarea placeholder=""></textarea></label>
-    </ion-list>
+   
+    <ion-list ng-repeat="(key, value) in subjects  | groupBy: '-Plan.Level'" ng-init="sh[key]=false">
+      
+            <ion-item class="item-divider item-icon-right" ng-click="sh[key]= !sh[key]">
+              <h2>Level: {{ key| ltrim: '-' }}</h2>
+              <span class="icon icon-accessory" ng-class="{'ion-chevron-down': sh[key], 'ion-chevron-right': !sh[key]}"></span>
+            </ion-item>
+            <ion-item class=" item-icon-right" ng-show="sh[key]" ng-repeat="subject in value| orderBy:'Sub_id'">
+      
+              <p>ID: {{subject.Plan.Sub_id}}</p>
+              <h4> Name: {{subject.Plan.Sub_name}}</h4>
+              <p> Department: {{subject.Plan.Department.Dep_name}}</p>
+              <p> Level: {{subject.Plan.Level}}</p>
+              <p ng-if="subject.Plan.Subject.Sub_name">Prerequisits: {{subject.Plan.Subject.Sub_name}}</p>
+              <p> Hour: {{subject.Plan.Hour}} </p>
+              <h5 ng-class="{assertive: subject.Status == 'Failed', royal: subject.Status == 'Succeed', positive: subject.Status == 'Current'}">
+              Status: {{subject.Status}} </h5>
+              <i class="icon ion-chevron-right icon-accessory"></i>
+              <ion-option-button class="button-assertive" ng-click="reqRemove(subject.Sub_id, subject.Stu_id, $root.student.Aca_id)">Request Remove</ion-option-button>
+            </ion-item>
+      
+          </ion-list>
     <button id="schedule-button64" style="border-radius:19px 19px 19px 19px;" class="button button-calm button-block">Send</button>
   </ion-content>
 </ion-view>

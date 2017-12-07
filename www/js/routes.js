@@ -123,7 +123,8 @@ angular.module('app.routes', [])
             templateUrl: 'templates/schedule.html',
             controller: 'scheduleCtrl'
           }
-        }
+        },
+        params: { student: null }
       })
 
       .state('menu.modifySchedule', {
