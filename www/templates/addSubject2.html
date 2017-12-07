@@ -1,8 +1,8 @@
 <ion-view title="Add subject " id="page24" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
     <h3 id="addSubject2-heading11" style="color:#000000;">Add Subject form</h3>
-    <form id="addSubject2-form19" class="list">
-      <label class="item item-input" id="addSubject2-input33">
+    <form name="addSubject2" class="list">
+      <!-- <label class="item item-input" id="addSubject2-input33">
         <span class="input-label">Student_name</span>
         <input type="text" placeholder="">
       </label>
@@ -14,20 +14,21 @@
         <span class="input-label">Level</span>
         <input type="text" placeholder="">
       </label>
+     <label class="item item-input" id="addSubject2-input58">
+        <span class="input-label">Hours</span>
+        <input type="text" placeholder="">
+      </label> -->
       <label class="item item-input" id="addSubject2-input56">
         <span class="input-label">Subject_name</span>
-        <input type="text" placeholder="">
+        <input type="text" placeholder="" ng-model="subject.Sub_name" required>
       </label>
       <label class="item item-input" id="addSubject2-input57">
         <span class="input-label">Subject_ID</span>
-        <input type="text" placeholder="">
+        <input type="text" placeholder="" ng-model="subject.Sub_id" required>
       </label>
-      <label class="item item-input" id="addSubject2-input58">
-        <span class="input-label">Hours</span>
-        <input type="text" placeholder="">
-      </label>
+
     </form>
     <div class="spacer" style="width: 300px; height: 29px;"></div>
-    <button id="addSubject2-button46" style="border-radius:110px 110px 110px 110px;" class="button button-calm button-block">Send Add request</button>
+    <button ng-disabled="addSubject2.$invalid" ng-click="reqAdd(subject.Sub_id, $root.student.Stu_id, $root.student.Aca_id)" style="border-radius:110px 110px 110px 110px;" class="button button-calm button-block">Send Add request</button>
   </ion-content>
 </ion-view>
