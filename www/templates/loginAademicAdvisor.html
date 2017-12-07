@@ -1,14 +1,22 @@
 <ion-view title="Login Aademic Advisor" id="page23" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
+
+      <div class="row row-center">
+          <div class="col col-center text-center">
+          <img width="50%" style=" border-radius: 50%;" src="./img/professor.svg">
+        </div>
+      </div>
     <form id="loginAademicAdvisor-form16" name="loginAdv" class="list">
-      <ion-list id="loginAademicAdvisor-list8">
+      <ion-list class="list-inset" id="loginAademicAdvisor-list8">
         <label class="item item-input" id="loginAademicAdvisor-input53">
-          <span class="input-label">Academic ID</span>
-          <input type="number" placeholder="" required ng-model="AdInfo.advId">
+          <!-- <span class="input-label">Academic ID</span> -->
+          <i class="icon ion-android-person placeholder-icon"></i>
+          <input type="number" placeholder="Academic ID" required ng-model="AdInfo.advId">
         </label>
         <label class="item item-input" id="loginAademicAdvisor-input54">
-          <span class="input-label">Password </span>
-          <input type="password" placeholder="" required ng-model="AdInfo.advPassword">
+          <!-- <span class="input-label">Password </span>-->
+          <i class="icon ion-android-lock placeholder-icon"></i>
+          <input type="password" placeholder="Password" required ng-model="AdInfo.advPassword">
         </label>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
