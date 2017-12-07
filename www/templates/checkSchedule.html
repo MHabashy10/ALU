@@ -6,7 +6,7 @@
         <h2>Level: {{ key| ltrim: '-' }}</h2>
         <span class="icon icon-accessory" ng-class="{'ion-chevron-down': sh[key], 'ion-chevron-right': !sh[key]}"></span>
       </ion-item>
-      <ion-item ng-show="sh[key]" ng-repeat="subject in value| orderBy:'Sub_id'">
+      <ion-item class=" item-icon-right" ng-show="sh[key]" ng-repeat="subject in value| orderBy:'Sub_id'">
 
         <p>ID: {{subject.Plan.Sub_id}}</p>
         <h4> Name: {{subject.Plan.Sub_name}}</h4>
@@ -16,7 +16,8 @@
         <p> Hour: {{subject.Plan.Hour}} </p>
         <h5 ng-class="{assertive: subject.Status == 'Failed', royal: subject.Status == 'Succeed', positive: subject.Status == 'Current'}">
         Status: {{subject.Status}} </h5>
-
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="reqRemove(subject.Sub_id, subject.Stu_id, $root.student.Aca_id)">Request Remove</ion-option-button>
       </ion-item>
 
     </ion-list>
