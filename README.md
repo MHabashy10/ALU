@@ -17,7 +17,7 @@
 
             2.  ~~Modify schedule~~
 
-                1.  Schedule
+                1.  ~~Schedule~~
 
     5.  ~~Add Student~~
 
