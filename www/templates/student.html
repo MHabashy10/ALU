@@ -7,6 +7,6 @@
       <ion-item id="student-list-item26">Department: {{student.Department.Dep_name}}</ion-item>
     </ion-list>
     <a ui-sref="menu.student.editStudent({student:student})" id="student-button21" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Edit Student info</a>
-    <a ui-sref="menu.modifySchedule()" id="student-button22" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Modify Schedule</a>
+    <a ui-sref="menu.modifySchedule({student:student})" id="student-button22" style="border-radius:60px 60px 60px 60px;" class="button button-calm button-block">Modify Schedule</a>
   </ion-content>
 </ion-view>
