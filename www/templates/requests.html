@@ -1,0 +1,28 @@
+<ion-view title="Requets" style="background-color:#BEDEE4;">
+    <ion-content padding="true" class="has-header">
+        <ion-list id="student-list10">
+            <ion-item ng-hide="requests.length">No Requests! </ion-item>
+            <ion-item class="item-icon-right" ng-repeat="request in requests">
+                <div class="row">
+                    <div class="col">
+                        <p>Subject ID: {{request.Sub_id}}</p>
+                        <h4> Subject Name: {{request.Plan.Sub_name}}</h4>
+                        <p> Subject Level: {{request.Plan.Level}}</p>
+                        <p> Subject Hour: {{request.Plan.Hour}} </p>
+                    </div>
+                    <div class="col">
+                        <p> Student ID: {{request.Student.Stu_id}}</p>
+                        <p> Student Name: {{request.Student.Stu_name}}</p>
+                        <p> Requested: {{request.Reason}}</p>
+                    </div>
+
+                </div>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+                <ion-option-button class="button-royal" ng-click="reqApprove(request.Sub_id, request.Stu_id, request.Reason )">Approve</ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="reqDecline(request.Sub_id, request.Stu_id)">Decline</ion-option-button>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+</ion-view>
