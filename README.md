@@ -7,11 +7,11 @@
 
     2.  ~~Signup~~
 
-    3.  ~~Welcome ~~
+    3.  ~~Welcome~~
 
     4.  ~~My students~~
 
-        1.  ~~Student info ~~
+        1. ~~Student info~~
 
             1.  ~~Student info edit~~
 
