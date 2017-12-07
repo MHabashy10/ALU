@@ -16,6 +16,75 @@ angular.module('app.controllers', [])
 
     }])
 
+  .controller('welcomeStudentCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function ($scope, $stateParams) {
+
+
+    }])
+  .controller('welcomeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function ($scope, $stateParams) {
+
+
+    }])
+
+  .controller('scheduleCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    // You can include any angular dependencies as parameters for this function
+    // TIP: Access Route Parameters for your page via $stateParams.parameterName
+    function ($scope, $stateParams) {
+
+
+    }])
+
+  .controller('modifyScheduleCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', '$ionicListDelegate',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading, $ionicListDelegate) {
+      $scope.subjects = [];
+      var Stu_id = $stateParams.student.Stu_id;
+      $ionicLoading.show();
+
+      apiService.getAllSubjects()
+        .then(function (response) {
+
+          $ionicLoading.hide();
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            $scope.subjects = response.data.subjects;
+          }
+        }).catch(function (error) {
+          $ionicLoading.hide();
+          alert(error.data);
+        })
+
+      $scope.subStuEdit = function (Sub_id, Status) {
+        var ReqData = {
+          Sub_id: Sub_id,
+          Stu_id: Stu_id,
+          Status: Status
+        }
+
+        $ionicLoading.show();
+        $ionicListDelegate.closeOptionButtons();
+        apiService.subStuEdit(ReqData)
+          .then(function (response) {
+
+            $ionicLoading.hide();
+            if (response.data.error) {
+              alert(response.data.error);
+            } else {
+              alert("Your Request has been sent to your advisor for reviewal!")
+            }
+          }).catch(function (error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
+      }
+
+    }])
+
   .controller('loginAademicAdvisorCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$rootScope', '$ionicLoading',
     function ($scope, $stateParams, apiService, $state, $rootScope, $ionicLoading) {
       $scope.AdInfo = {};
@@ -153,16 +222,10 @@ angular.module('app.controllers', [])
 
     }])
 
-  .controller('welcomeStudentCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
 
 
-    }])
-
-  .controller('checkScheduleCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', '$rootScope',
-    function ($scope, $stateParams, apiService, $state, $ionicLoading, $rootScope) {
+  .controller('checkScheduleCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', '$rootScope', '$ionicListDelegate',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading, $rootScope, $ionicListDelegate) {
 
       $scope.subjects = [];
 
@@ -181,7 +244,62 @@ angular.module('app.controllers', [])
           $ionicLoading.hide();
           alert(error.data);
         })
+
+      $scope.reqRemove = function (Sub_id, Stu_id, Aca_id) {
+        // console.log(Sub_id, Stu_id, Aca_id)
+        var ReqData = {
+          Sub_id: Sub_id,
+          Stu_id: Stu_id,
+          Aca_id: Aca_id,
+          Reason: "Remove"
+        }
+        $ionicLoading.show();
+        $ionicListDelegate.closeOptionButtons();
+        apiService.reqStuEdit(ReqData)
+          .then(function (response) {
+
+            $ionicLoading.hide();
+            if (response.data.error) {
+              alert(response.data.error);
+            } else {
+              alert("Your Request has been sent to your advisor for reviewal!")
+            }
+          }).catch(function (error) {
+            $ionicLoading.hide();
+            alert(error.data);
+          })
+      }
     }])
+  .controller('addSubject2Ctrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', '$rootScope',
+    function ($scope, $stateParams, apiService, $state, $ionicLoading, $rootScope) {
+      $scope.subject = {};
+
+      $scope.reqAdd = function (Sub_id, Stu_id, Aca_id) {
+        //console.log(Sub_id, Stu_id, Aca_id);
+        var ReqData = {
+          Sub_id: Sub_id,
+          Stu_id: Stu_id,
+          Aca_id: Aca_id,
+          Reason: "Add"
+        }
+        $ionicLoading.show();
+        apiService.reqStuEdit(ReqData).then(function (response) {
+
+          $ionicLoading.hide();
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            alert("Your Request has been sent to your advisor for reviewal!");
+            $state.go("checkSchedule");
+          }
+        }).catch(function (error) {
+          $ionicLoading.hide();
+          alert(error.data);
+        })
+      }
+
+    }])
+
 
   .controller('PlanForStudentCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$ionicLoading', '$rootScope',
     function ($scope, $stateParams, apiService, $state, $ionicLoading, $rootScope) {
@@ -232,38 +350,6 @@ angular.module('app.controllers', [])
     }])
 
 
-
-  .controller('addSubject2Ctrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
-
-
-    }])
-
-  .controller('welcomeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
-
-
-    }])
-
-  .controller('scheduleCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
-
-
-    }])
-
-  .controller('modifyScheduleCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
-
-
-    }])
 
   .controller('myStudentsCtrl', ['$scope', '$stateParams', 'apiService', '$state', '$rootScope', '$ionicLoading',
     function ($scope, $stateParams, apiService, $state, $rootScope, $ionicLoading) {
