@@ -49,7 +49,7 @@ angular.module('app.routes', [])
 
       .state('menu.student', {
         url: '/page10',
-        
+
         views: {
           'side-menu21': {
             templateUrl: 'templates/student.html',
@@ -133,7 +133,8 @@ angular.module('app.routes', [])
             templateUrl: 'templates/modifySchedule.html',
             controller: 'modifyScheduleCtrl'
           }
-        }
+        },
+        params: { student: null }
       })
 
       .state('menu.myStudents', {
