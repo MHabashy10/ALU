@@ -178,6 +178,22 @@ angular.module('app.services', [])
 
         return sendReq(req);
 
+      },
+
+      getMyRequests: function (AcaId) {
+
+        var req = {
+          method: 'POST',
+          url: baseUrl + 'request/myRequests',
+          headers: {
+            'Content-Type': "application/json"
+          },
+          data: { "AcaId": AcaId }
+
+        }
+
+        return sendReq(req);
+
       }
 
 
