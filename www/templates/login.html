@@ -1,14 +1,22 @@
-<ion-view title="Login" id="page11" style="background-color:#BEDEE4;">
+<ion-view title="Student Login" id="page11" style="background-color:#BEDEE4;">
   <ion-content padding="true" class="has-header">
+
+      <div class="row row-center">
+          <div class="col col-center text-center">
+          <img width="50%" style=" border-radius: 50%;" src="./img/graduate.svg">
+        </div>
+      </div>
     <form name="loginStu" class="list">
-      <ion-list id="login-list5">
-        <label class="item item-input" id="login-input12">
-          <span class="input-label">Student ID</span>
-          <input type="text" placeholder="" ng-model="student.Stu_id" required>
+      <ion-list class="list-inset" id="login-list5">
+        <label class="item item-input " id="login-input12">
+            <i class="icon ion-android-person placeholder-icon"></i>
+          <!-- <span class="input-label">Student ID</span> -->
+          <input type="text" placeholder="Student ID" ng-model="student.Stu_id" required>
         </label>
-        <label class="item item-input" id="login-input28">
-          <span class="input-label">Password</span>
-          <input type="password" placeholder="" ng-model="student.password" required>
+        <label class="item item-input " id="login-input13">
+            <i class="icon ion-android-lock placeholder-icon"></i>
+          <!-- <span class="input-label">Password</span> -->
+          <input type="password" placeholder="Password" ng-model="student.password" required>
         </label>
       </ion-list>
     </form>
