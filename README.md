@@ -1,7 +1,7 @@
 # NBU To-do
 
 
-1.  Advisor
+1.  ~~Advisor~~
 
     1.  ~~Login~~
 
@@ -25,7 +25,7 @@
 
     7.  ~~Plan~~
 
-    8.  Requests
+    8.  ~~Requests~~
 
 2.  ~~Student~~
 
