@@ -39,4 +39,4 @@
 
             1.  ~~Add Subject~~
 
-Progress: 15/17= 88% Completed
+Progress: 17/17= 100% Completed
